@@ -7,10 +7,10 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const businessId = process.env.WA_BI;
   const limit = 2000;
-  const url = `${process.env.WA_URL}/${process.env.WA_VERSION}/${businessId}/owned_whatsapp_business_accounts?limit=${limit}`;
+  const url = `${process.env.WA_URL}/${process.env.WA_VERSION}/${businessId}/client_whatsapp_business_accounts?limit=${limit}`;
   
   const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${process.env.WA_ACCESS_TOKEN}` },
+    headers: { Authorization: `Bearer ${process.env.WA_TOKEN}` },
   });
 
   const data = await response.json();

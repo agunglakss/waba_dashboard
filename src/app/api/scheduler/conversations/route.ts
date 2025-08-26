@@ -32,11 +32,9 @@ type DataPoint = {
 
 
 async function fetchApi(wabaId: string) {
-  // https://graph.facebook.com/{{api-version}}/{{waba-id}}?fields=pricing_analytics.start({{start-date}}).end({{end-date}}).granularity(DAILY).dimensions(PRICING_CATEGORY,PRICING_TYPE,TIER,COUNTRY,PHONE)
-  console.log(wabaId)
   const response = await fetch(`${process.env.WA_URL}/${process.env.WA_VERSION}/${wabaId}?fields=pricing_analytics.start(${startTimeStamp}).end(${endTimeStamp}).granularity(DAILY).dimensions(PRICING_CATEGORY,PRICING_TYPE,TIER,COUNTRY,PHONE)`, 
-                                {headers: { Authorization: `Bearer ${process.env.WA_ACCESS_TOKEN}` }})
-  console.log(wabaId == '441680652371821')
+                                {headers: { Authorization: `Bearer ${process.env.WA_TOKEN}` }})
+  
   if (!response.ok) return [];
   return response.json();
 }

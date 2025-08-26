@@ -33,7 +33,7 @@ export function DetailAnalyticModal({ isOpen, onClose, wabaId }: DetailAnalyticM
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:3000/api/analytics/detail?wabaId=${wabaId}&startDate=${startDate}&endDate=${endDate}`
+          `/api/analytics/detail?wabaId=${wabaId}&startDate=${startDate}&endDate=${endDate}`
         );
 
         const { data, waba_name } = await res.json();
