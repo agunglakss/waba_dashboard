@@ -5,7 +5,7 @@ export default defineConfig({
   schema: './drizzle/db/schema.ts',
   dialect: 'postgresql',
   dbCredentials: {
-    url: `postgres://${process.env.DB_USERNAME}@${process.env.DB_URL}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+    url: `${process.env.SUPABASE_URL}`,
   },
   migrations: {
     prefix: "timestamp",
