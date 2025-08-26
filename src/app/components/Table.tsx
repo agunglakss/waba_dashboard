@@ -73,7 +73,6 @@ export default function WabaTable({
 
   // Fetch data when component mounts
   useEffect(() => {
-    console.log('Table component mounted, fetching data...');
     fetchData(1, 10);
   }, [fetchData]);
 

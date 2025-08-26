@@ -10,8 +10,9 @@ export async function GET(req: Request) {
     const wabaId = searchParams.get("wabaId") || "";
     const startDate = searchParams.get("startDate") || dateNow;
     const endDate = searchParams.get("endDate") || dateNow;
-    
+    console.log("Detail startDate " + startDate)
     const startUnixTimeStamp = toTimeStampStartDate(startDate);
+    console.log("Detail startUnixTimeStamp " + startUnixTimeStamp)
     const endUnixTimeStamp = toTimeStampEndDate(endDate);
 
     const data = await getSummaryAnalyticWithPhoneNumber({startDate: startUnixTimeStamp, endDate: endUnixTimeStamp, wabaId: wabaId});
