@@ -1,0 +1,1 @@
+CREATE INDEX "waba_date_idx" ON "pricing_analytics" USING btree ("waba_id","start_date","end_date");

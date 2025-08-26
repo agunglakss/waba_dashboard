@@ -1,0 +1,1 @@
+ALTER TABLE "pricing_analytics" ADD COLUMN "tier" varchar;
