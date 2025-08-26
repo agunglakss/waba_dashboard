@@ -6,6 +6,7 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const dateNow = yesterdayUTC7();
+    console.log(dateNow)
     const wabaId = searchParams.get("wabaId") || "";
     const startDate = searchParams.get("startDate") || dateNow;
     const endDate = searchParams.get("endDate") || dateNow;
@@ -15,7 +16,7 @@ export async function GET(req: Request) {
 
     const data = await getSummaryAnalyticWithPhoneNumber({startDate: startUnixTimeStamp, endDate: endUnixTimeStamp, wabaId: wabaId});
     const wabaName  = await getWabaNameById(wabaId);
-    console.log(data);
+    
     return NextResponse.json(
       { data, "waba_name": wabaName, "waba_id": wabaId }
     );
