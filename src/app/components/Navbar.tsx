@@ -17,7 +17,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Menu */}
-          <div className="flex items-center space-x-6 border-l border-gray-200 pl-5">
+          {/* <div className="flex items-center space-x-6 border-l border-gray-200 pl-5">
             <Link
               href="/about"
               className="inline-flex items-center text-sm py-2 px-5 border border-blue-400 rounded-md text-blue-400 hover:border-blue-600 hover:text-white hover:bg-blue-600 transition duration-300"
@@ -38,7 +38,7 @@ export default function Navbar() {
               </svg>
               Logout
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

@@ -66,9 +66,9 @@ export default function FilterForm() {
     <section className="pt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+        {/* <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Hi, Agung Laksono
-        </h2>
+        </h2> */}
 
         <form onSubmit={handleSubmit} className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
