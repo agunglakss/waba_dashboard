@@ -19,7 +19,6 @@ export const yesterdayUTC7 = () => {
 
 // formarter unix timestamp for start date, 20-08-2025T00:00:00+7 -> 1755622800
 export const toTimeStampStartDate = (date: string) => {
-  console.log(date)
   const startDateTime = new Date(date + "T00:00:00+07:00");
   return Math.floor(startDateTime.getTime() / 1000);
 }

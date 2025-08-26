@@ -11,8 +11,8 @@ export async function GET(req: Request) {
     
     const dateNow = yesterdayUTC7();
     
-    const startUnixTimeStamp = startDate == "" ? toTimeStampStartDate(dateNow) : toTimeStampStartDate(startDate);
-    const endUnixTimeStamp = endDate == "" ? toTimeStampEndDate(dateNow) : toTimeStampEndDate(endDate);
+    const startUnixTimeStamp = startDate == "null" ? toTimeStampStartDate(dateNow) : toTimeStampStartDate(startDate);
+    const endUnixTimeStamp = endDate == "null" ? toTimeStampEndDate(dateNow) : toTimeStampEndDate(endDate);
 
     const data = await getSummaryAnalyticWithPhoneNumber({startDate: startUnixTimeStamp, endDate: endUnixTimeStamp, wabaId: wabaId});
     const wabaName  = await getWabaNameById(wabaId);
