@@ -64,6 +64,7 @@ export async function getSummaryAnalyticWithPhoneNumber({startDate, endDate, wab
     `;
 
     const results = await db.execute(query);
+    console.log(results.rows)
     return results.rows;
   } catch(error) {
     console.log(error)
