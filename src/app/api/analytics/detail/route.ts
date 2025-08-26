@@ -5,15 +5,14 @@ import { getSummaryAnalyticWithPhoneNumber, getWabaNameById } from "@/app/model/
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
+    const wabaId = searchParams.get("wabaId") as string;
+    const startDate = searchParams.get("startDate") as string;
+    const endDate = searchParams.get("endDate") as string;
+    
     const dateNow = yesterdayUTC7();
-    console.log("Detail " + dateNow)
-    const wabaId = searchParams.get("wabaId") || "";
-    const startDate = searchParams.get("startDate") || dateNow;
-    const endDate = searchParams.get("endDate") || dateNow;
-    console.log("Detail startDate " + startDate)
-    const startUnixTimeStamp = toTimeStampStartDate(startDate);
-    console.log("Detail startUnixTimeStamp " + startUnixTimeStamp)
-    const endUnixTimeStamp = toTimeStampEndDate(endDate);
+    
+    const startUnixTimeStamp = startDate == "" ? toTimeStampStartDate(dateNow) : toTimeStampStartDate(startDate);
+    const endUnixTimeStamp = endDate == "" ? toTimeStampEndDate(dateNow) : toTimeStampEndDate(endDate);
 
     const data = await getSummaryAnalyticWithPhoneNumber({startDate: startUnixTimeStamp, endDate: endUnixTimeStamp, wabaId: wabaId});
     const wabaName  = await getWabaNameById(wabaId);
