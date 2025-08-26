@@ -4,6 +4,6 @@ export const db = drizzle({
   logger: true,
   connection: { 
     connectionString: process.env.SUPABASE_URL,
-    ssl: false
+    ssl: true
     },
 });
