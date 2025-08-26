@@ -62,7 +62,7 @@ export function DetailAnalyticModal({ isOpen, onClose, wabaId }: DetailAnalyticM
         >
           ✕
         </button>
-
+    <div className="overflow-auto">
         <h2 className="text-xl font-bold mb-4 text-center">{wabaId} | {wabaName}</h2>
         {loading ? (
           <p className="text-center text-gray-500">Loading...</p>
@@ -92,7 +92,7 @@ export function DetailAnalyticModal({ isOpen, onClose, wabaId }: DetailAnalyticM
             </table>
           </>
         )}
-
+</div>
         <div className="flex justify-end gap-2 mt-4">
           <button
             onClick={onClose}
