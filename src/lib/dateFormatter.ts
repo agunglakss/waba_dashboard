@@ -1,25 +1,25 @@
-const now = new Date();
+export const yesterdayUTC7 = () => {
+  const now = new Date();
 
-// yesterday (00:00:00)
-const startDateTime = new Date(
-  now.getFullYear(),
-  now.getMonth(),
-  now.getDate() - 1,
-  0, 0, 0
-);
-export const startTimeStamp = Math.floor(startDateTime.getTime() / 1000);
+  // shift to UTC
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  // adjust to UTC+7
+  const utc7 = new Date(utc + 7 * 60 * 60000);
 
-// yesterday (23:59:59)
-const endDateTime = new Date(
-  now.getFullYear(),
-  now.getMonth(),
-  now.getDate(),
-  0, 0, -1
-);
-export const endTimeStamp = Math.floor(endDateTime.getTime() / 1000);
+  // move to yesterday
+  utc7.setDate(utc7.getDate() - 1);
+
+  // format as yyyy-mm-dd
+  const year = utc7.getFullYear();
+  const month = String(utc7.getMonth() + 1).padStart(2, "0");
+  const day = String(utc7.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
 
 // formarter unix timestamp for start date, 20-08-2025T00:00:00+7 -> 1755622800
 export const toTimeStampStartDate = (date: string) => {
+  console.log(date)
   const startDateTime = new Date(date + "T00:00:00+07:00");
   return Math.floor(startDateTime.getTime() / 1000);
 }

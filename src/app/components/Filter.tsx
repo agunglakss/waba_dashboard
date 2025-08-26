@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { endTimeStamp, startTimeStamp, toTimeStampEndDate, toTimeStampStartDate } from "@/lib/dateFormatter";
+import { toTimeStampEndDate, toTimeStampStartDate, yesterdayUTC7 } from "@/lib/dateFormatter";
 import { PRICING_CATEGORY_LABELS } from "@/lib/constants/PRICING_CATEGORY_LABELS";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -16,15 +16,16 @@ export default function FilterForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [startDate, setStartDate] = useState(searchParams.get("startDate") || "");
-  const [endDate, setEndDate] = useState(searchParams.get("endDate") || "");
+  const [startDate, setStartDate] = useState(searchParams.get("startDate") || yesterdayUTC7());
+  const [endDate, setEndDate] = useState(searchParams.get("endDate") || yesterdayUTC7());
   const [wabaId, setWabaId] = useState(searchParams.get("wabaId") || "");
   const [data, setData] = useState<SummaryAnalyticItem[]>([]);
   
   useEffect(() => {
     const fetchData = async () => {
-      const startDateTimeUnix = startDate == "" ? startTimeStamp : toTimeStampStartDate(startDate);
-      const endDateTimeUnix = endDate == "" ? endTimeStamp : toTimeStampEndDate(endDate);
+      const startDateTimeUnix = toTimeStampStartDate(startDate);
+      const endDateTimeUnix = toTimeStampEndDate(endDate);
+      console.log(startDateTimeUnix)
       
       const res = await fetch(
         `/api/analytics?startDate=${startDateTimeUnix}&endDate=${endDateTimeUnix}&wabaId=${wabaId}`

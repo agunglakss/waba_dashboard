@@ -60,7 +60,8 @@ export async function getSummaryAnalyticWithPhoneNumber({startDate, endDate, wab
       SELECT phone_number, pricing_category, SUM(cost) as approximate_charges, SUM(volume) as deliveries
       FROM pricing_analytics
       WHERE ${conditions}
-      GROUP BY phone_number, pricing_category
+      GROUP BY pricing_category, phone_number
+      ORDER BY phone_number DESC;
     `;
 
     const results = await db.execute(query);

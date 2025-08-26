@@ -1,5 +1,5 @@
 import { getWabaIds } from "@/app/model/customer";
-import { startTimeStamp, endTimeStamp } from "@/lib/dateFormatter";
+import { yesterdayUTC7, toTimeStampStartDate, toTimeStampEndDate } from "@/lib/dateFormatter";
 import { sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { insertPricingAnalyticBatch } from "@/app/model/conversation";
@@ -32,7 +32,11 @@ type DataPoint = {
 
 
 async function fetchApi(wabaId: string) {
-  const response = await fetch(`${process.env.WA_URL}/${process.env.WA_VERSION}/${wabaId}?fields=pricing_analytics.start(${startTimeStamp}).end(${endTimeStamp}).granularity(DAILY).dimensions(PRICING_CATEGORY,PRICING_TYPE,TIER,COUNTRY,PHONE)`, 
+  const dateNow = yesterdayUTC7();
+  const startDate = toTimeStampStartDate(dateNow)
+  const endDate = toTimeStampEndDate(dateNow)
+
+  const response = await fetch(`${process.env.WA_URL}/${process.env.WA_VERSION}/${wabaId}?fields=pricing_analytics.start(${startDate}).end(${endDate}).granularity(DAILY).dimensions(PRICING_CATEGORY,PRICING_TYPE,TIER,COUNTRY,PHONE)`, 
                                 {headers: { Authorization: `Bearer ${process.env.WA_TOKEN}` }})
   
   if (!response.ok) return [];
