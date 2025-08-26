@@ -25,7 +25,6 @@ export default function FilterForm() {
     const fetchData = async () => {
       const startDateTimeUnix = toTimeStampStartDate(startDate);
       const endDateTimeUnix = toTimeStampEndDate(endDate);
-      console.log(startDateTimeUnix)
       
       const res = await fetch(
         `/api/analytics?startDate=${startDateTimeUnix}&endDate=${endDateTimeUnix}&wabaId=${wabaId}`

@@ -6,7 +6,7 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const dateNow = yesterdayUTC7();
-    console.log(dateNow)
+    console.log("Detail " + dateNow)
     const wabaId = searchParams.get("wabaId") || "";
     const startDate = searchParams.get("startDate") || dateNow;
     const endDate = searchParams.get("endDate") || dateNow;
